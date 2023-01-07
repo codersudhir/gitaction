@@ -27,15 +27,15 @@ const Movie = ({data1}) => {
  
   const handleadd=(el)=>{
   
-    fetch(`http://localhost:8080/wishlist`,{
-      method:"POST",
-      headers: {
-        'Content-type': 'application/json'
-       },
-       body:JSON.stringify(data)
-    })
-    .then((res)=>res.json())
-    .then((res)=>console.log(res))
+    // fetch(`http://localhost:8080/wishlist`,{
+    //   method:"POST",
+    //   headers: {
+    //     'Content-type': 'application/json'
+    //    },
+    //    body:JSON.stringify(data)
+    // })
+    // .then((res)=>res.json())
+    // .then((res)=>console.log(res))
     
 
   }
