@@ -62,23 +62,5 @@ const Movie = ({data1}) => {
   )
 }
 
-export async function getServerSideProps(context) { 
-
-  const {id}=context.query
-  console.log(id)
-  const res = await fetch (`https://movies-database-gold.vercel.app/movies${id}`)
-  const data1 = await res.json();
-
-  // The next line will only be logged on the server and never on the browser console even if we make 
-  // client-side navigation.
-  // This confirms that `getServerSideProps` is guaranteed to run on the server and never on the client (or browser).
-
-
-  return {
-      props: {
-          data1
-      }
-  }
-}
 
 export default Movie

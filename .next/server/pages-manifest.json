@@ -2,7 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/Watchlist": "pages/Watchlist.js",
-  "/": "pages/index.js",
-  "/[id]": "pages/[id].js"
+  "/[id]": "pages/[id].js",
+  "/": "pages/index.js"
 }

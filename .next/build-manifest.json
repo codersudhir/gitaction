@@ -20,11 +20,6 @@
       "static/chunks/main.js",
       "static/chunks/pages/index.js"
     ],
-    "/Watchlist": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/Watchlist.js"
-    ],
     "/[id]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
