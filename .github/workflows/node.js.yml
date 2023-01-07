@@ -25,7 +25,7 @@ on:
         cache: 'npm'
     - run: npm ci
     - run: npm run build 
-    - name : upload artifact in order to deploy
+     name : upload artifact in order to deploy
       uses : actions/upload-artifact@v2
       with : production-files
       path: .next
