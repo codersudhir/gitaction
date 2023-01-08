@@ -5,9 +5,9 @@ const Projects = ({data}) => {
   // console.log(data.items)
   return (
     
-    <Grid templateColumns='repeat(2, 1fr)' gap={6}>
+    <Grid templateColumns='repeat(2, 1fr)' gap={6} padding="20px">
       {data.items.map((el)=>{
-        return <GridItem style={{border:"1px solid red"}} >
+        return <GridItem style={{border:"1px solid black"}}key={el.id} >
          
           <Link href={`${el.html_url}`}> <h1>{el.name}</h1></Link>
           <p>{el.description}</p>

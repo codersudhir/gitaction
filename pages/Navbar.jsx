@@ -1,39 +1,89 @@
-import { Flex } from '@chakra-ui/react'
-import Link from 'next/link'
-import React, { useState } from 'react'
+import { ReactNode } from 'react';
+import {
+  Box,
+  Flex,
+  Avatar,
+  Link,
+  Button,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuDivider,
+  useDisclosure,
+  useColorModeValue,
+  Stack,
+  useColorMode,
+  Center,
+} from '@chakra-ui/react';
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 
-const Navbar = ({backgroundColor1}) => {
-  const [toggle,settoggle]=useState(false)
-  const handletoggle=()=>{
-    if(!toggle){
-      settoggle(true)
+const NavLink = ({ children }) => (
+  <Link
+    px={2}
+    py={1}
+    rounded={'md'}
+    _hover={{
+      textDecoration: 'none',
+      bg: useColorModeValue('gray.200', 'gray.700'),
+    }}
+    href={'#'}>
+    {children}
+  </Link>
+);
 
-    }
-    if(toggle){
-      settoggle(false)
-    }
-   
-  }
-  console.log(toggle)
+export default function Nav() {
+  const { colorMode, toggleColorMode } = useColorMode();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Flex justifyContent={"space-around"} margin="20px" backgroundColor={toggle? "#171923" : "#edf2f7"} color={toggle? "#edf2f7" : "fffff"}>
-      <div>
-      <Link href={"/"} >Home</Link>
-      <Link href={"/Projects"}>Project</Link>
-      <Link href={"/Experience"}>experience</Link>
-      </div>
-      <div style={{display:"flex",marginLeft:"200px"}}  >
-        <button onClick={handletoggle}><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx350x4BvrqzCzHg1gWUOTzChUco_8r5zZK2lO8v8&s"  width={"30px"} style={{borderRadius:"50%"}} alt="" /></button>
-        <button><img src="https://avatars.githubusercontent.com/u/105806651?v=4" width={"30px"} style={{borderRadius:"50%"}} alt="" /></button>
-      </div>
-     
-    </Flex>
-  )
-}
+    <>
+      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4} >
+        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+          <Box><Link href='/'>Sudhir Nandane</Link></Box>
+         <Button><Link href='/Projects'>Project</Link></Button>
+         <Button><Link href='/Experience'>Experience</Link></Button>
 
-export default Navbar
+          <Flex alignItems={'center'}>
+            <Stack direction={'row'} spacing={7}>
+              <Button onClick={toggleColorMode}>
+                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+              </Button>
 
-Navbar.prototype={
-  backgroundColor1:" #17192g3",
-
+              <Menu>
+                <MenuButton
+                  as={Button}
+                  rounded={'full'}
+                  variant={'link'}
+                  cursor={'pointer'}
+                  minW={0}>
+                  <Avatar
+                    size={'sm'}
+                    src={'https://avatars.githubusercontent.com/u/105806651?v=4'}
+                  />
+                </MenuButton>
+                <MenuList alignItems={'center'}>
+                  <br />
+                  <Center>
+                    <Avatar
+                      size={'2xl'}
+                      src={'https://avatars.githubusercontent.com/u/105806651?v=4'}
+                    />
+                  </Center>
+                  <br />
+                  <Center>
+                    <p>Sudhir Nandane</p>
+                  </Center>
+                  <br />
+                  <MenuDivider />
+                  <MenuItem><Link href='/Projects'>Project</Link></MenuItem>
+                  <MenuItem><Link href='/Experience'>Experience</Link></MenuItem>
+                 
+                </MenuList>
+              </Menu>
+            </Stack>
+          </Flex>
+        </Flex>
+      </Box>
+    </>
+  );
 }
