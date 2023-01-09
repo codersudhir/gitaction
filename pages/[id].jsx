@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Repo = ({}) => {
+const Repo = () => {
   return (
     <div>
       
@@ -8,7 +8,7 @@ const Repo = ({}) => {
   )
 }
 export async function getServerSideProps(context) {
-    let id=context.params
+//     let id=context.params
     
     // Fetch data from external API
     const res = await fetch(`https://api.github.com/search/repositories?q=user:codersudhir+fork:true&sort=updated&per_page=10&type=Repositories`)
