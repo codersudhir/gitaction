@@ -1,72 +1,41 @@
-import Head from 'next/head'
-import Image from 'next/image'
+
 import { Inter } from '@next/font/google'
-import styles from '../styles/Home.module.css'
-import { Button, Flex, Grid, GridItem, Text } from '@chakra-ui/react'
+import { Button, Grid, Image } from '@chakra-ui/react'
 import Link from 'next/link'
-import Experience from './Experience'
+
+const inter = Inter({ subsets: ['latin'] })
+
+export default function Home({posts}) {
 
 
-
-
-export default function Home({posts,data1}) {
-  //  console.log(posts)
   return (
-    < >
-  
-    <Flex justifyContent={"space-around"}>
-    <div style={{border:"1px solid black",width:"30%",textAlign:"center"}}>
-      <img src={posts.avatar_url} style={{borderRadius:"50%",width:"100px",marginLeft:"150px"}} />
-      <p>{posts.name}</p>
-      <p>{posts.bio}</p>
-      <Flex justifyContent={"space-around"}>
-      <Link href={"https://docs.google.com/document/d/1_bWH28nOAnBCozL8CrT66WpHO_9jXLN_xWea7NnGeBc/edit"}>
-        <Button borderRadius={"50px"} style={{backgroundColor:"green"}}> Resume</Button></Link>
-        <Button  borderRadius={"50px"}  style={{backgroundColor:"#2a83c6"}}><Link href={posts.html_url} >Follow</Link></Button>
-      </Flex>
-      <Experience/>
-    </div>
-    <div style={{border:"1px solid black",width:"60%"}}>
-      <Text textAlign={"center"}>Projects</Text>
-      <Grid templateColumns='repeat(2, 1fr)' gap={6} padding="20px">
-      {data1.items.map((el)=>{
-        return <GridItem style={{border:"1px solid black"}}key={el.id} >
-         
-          <Link href={`${el.html_url}`}> <h1>{el.name}</h1></Link>
-          <p>{el.description}</p>
-          <Flex justifyContent={"space-around"}>
-            <Flex>
-              <p>forks : {el.stargazers_count}</p>
-              <p> star: {el.forks_count}</p>
-            </Flex>
-            <h3>{el.language}</h3>
-          </Flex>
-        </GridItem>
+    <Grid templateColumns='repeat(5, 1fr)' gap={6} mt={20}>
+      {posts.map((el)=>{
+        return<Link href={`${el.id}`} key={el.id}>
+        <div style={{border:"1px solid red",alignItems:"center"}}>
+          <Image src={el.image} alt={el.title} boxSize={200}  />
+          <h1>{el.title}</h1>
+          <p>{el.category}</p>
+        </div></Link>
       })}
-      
     </Grid>
-    </div>
-
-    </Flex>
-   
-     
-    </>
   )
+ 
 }
 
 export async function getStaticProps() {
-
-  const res = await fetch('https://api.github.com/users/codersudhir')
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  const res = await fetch('http://localhost:3000/data')
   const posts = await res.json()
-
-  const res1 = await fetch(`https://api.github.com/search/repositories?q=user:codersudhir+fork:true&sort=updated&per_page=10&type=Repositories`)
-  const data1 = await res1.json()
 
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
   return {
     props: {
-      posts,data1
+      posts,
     },
   }
 }
+
+

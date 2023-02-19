@@ -1,18 +1,12 @@
+import '@/styles/globals.css'
 import { ChakraProvider } from '@chakra-ui/react'
-import Home from '.'
-import '../styles/globals.css'
-import Nav from './Navbar'
-
+import Navbar from './component/Navbar'
 
 export default function App({ Component, pageProps }) {
   return (
-    <>
     <ChakraProvider>
-    <Nav/>
-    <Component {...pageProps} />
-
+      <Navbar/>
+      <Component {...pageProps} />
     </ChakraProvider>
-   
-    </>
   )
 }
