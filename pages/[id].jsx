@@ -1,9 +1,14 @@
 import { Button,Image } from '@chakra-ui/react'
+import axios from 'axios'
 
 import React from 'react'
 
 
 const Single = ({data}) => {
+  const handlecart= async(data)=>{
+    let res=await axios.post("https://emerald-gecko-tie.cyclic.app/cart",data)
+ 
+  }
   
  
   return (
@@ -11,12 +16,12 @@ const Single = ({data}) => {
          <Image src={data.image} alt={data.title} boxSize={200} />
         <h1>{data.title}</h1>
         <p>{data.price}</p>
-        <Button>ADD TO CART</Button>
+        <Button onClick={()=>handlecart(data)}>ADD TO CART</Button>
     </div>
   )
 }
 export async function getStaticPaths() {
-    const res = await fetch(`http://localhost:3000/data`)
+    const res = await fetch(`https://emerald-gecko-tie.cyclic.app/data`)
   const posts = await res.json()
     return {
       paths: posts.map((el)=>({params:{id:String(el.id)}})),
@@ -29,7 +34,7 @@ export async function getStaticPaths() {
     let id=context.params.id
     console.log(id)
    
-    const res = await fetch(`http://localhost:3000/data/${id}`)
+    const res = await fetch(`https://emerald-gecko-tie.cyclic.app/data/${id}`)
   const data = await res.json()
 
   return {

@@ -4,7 +4,7 @@ import React from 'react'
 
 const ProductCard = ({image,title,id,category}) => {
   return (
-    <Link href={`/Single/${id}`} >
+    <Link href={`${id}`} >
     <div style={{border:"1px solid red",alignItems:"center"}}>
       <Image src={image} alt={title} boxSize={"200px"} />
       <h1>{title}</h1>

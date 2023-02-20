@@ -3,7 +3,7 @@ import { Inter } from '@next/font/google'
 import { Button, Grid, Image } from '@chakra-ui/react'
 import Link from 'next/link'
 
-const inter = Inter({ subsets: ['latin'] })
+
 
 export default function Home({posts}) {
 
@@ -26,7 +26,7 @@ export default function Home({posts}) {
 export async function getStaticProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const res = await fetch('http://localhost:3000/data')
+  const res = await fetch('https://emerald-gecko-tie.cyclic.app/data')
   const posts = await res.json()
 
   // By returning { props: { posts } }, the Blog component
